@@ -1,0 +1,75 @@
+.PlayerStatsContainer {
+    border: 1px solid black;
+    display: inline-block;
+    margin: 0 20px;
+    padding: 8px 12px;
+    position: absolute;
+    width: fit-content;
+}
+
+.PlayerTitle {
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.Attacker {
+    color: red;
+    text-align: center;
+}
+
+.Defender {
+    color: green;
+    text-align: center;
+}
+
+.CurrentTurn {
+    border: 1px solid red;
+}
+
+.CurrentTurnLeft {
+    border: 1px solid red;
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    width: fit-content;
+}
+
+.CurrentTurnRight {
+    color: red;
+    height: 200px;
+    position: absolute;
+    right: 50px;
+    top: 10px;
+    width: fit-content;
+}
+
+.SecondariesContainer {
+    border: 1px solid black;
+    margin: 10px 0 0 0;
+    padding: 8px 12px;
+}
+
+.AllSecondaries {
+
+}
+
+.LeftAllSecondaries {
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+    top: 250px;
+    width: 250px;
+}
+
+.RightAllSecondaries {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    top: 250px;
+    width: 250px;
+}
+
+.TurnMarker {
+    text-decoration: underline;
+}
