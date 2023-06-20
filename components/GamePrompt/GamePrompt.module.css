@@ -1,0 +1,28 @@
+.GamePromptContainer {
+    border: 1px solid black;
+    margin: 20px auto;
+    padding: 8px 12px;
+    width: 550px;
+}
+
+.Description {
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.LongDescription {
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.Mission1 {
+    border: 1px solid black;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+}
+
+.Mission2 {
+    border: 1px solid black;
+    padding: 8px 12px;
+}
