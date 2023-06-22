@@ -36,10 +36,8 @@ const PlayerStats = props => {
             {secondaries && secondaries.length > 0 && location === 'left' &&
             <div className={`${styles.AllSecondaries} ${styles.LeftAllSecondaries}`}>
                 {secondaries && secondaries.map((secondary, index) => {
-                    console.log(index + 1);
-                    console.log(secondary[0].achieved)
                     return (
-                        <div className={styles.SecondariesContainer}>
+                        <div key={index} className={styles.SecondariesContainer}>
                             <p className={styles.TurnMarker}>Turn {index + 1}</p>
                             <div className={styles.SecondaryContainer}>
                             <div style={{color: secondary[0].achieved && secondary[0].achieved === index + 1 ? 'green' : 'black'}}>{secondary[0].name}</div>
@@ -55,9 +53,9 @@ const PlayerStats = props => {
             {secondaries && secondaries.length > 0 && location === 'right' &&
             <div className={`${styles.AllSecondaries} ${styles.RightAllSecondaries}`}>
                 {secondaries && secondaries.map((secondary, index) => {
-                    console.log(secondary)
+
                     return (
-                        <div className={styles.SecondariesContainer}>
+                        <div key={index} className={styles.SecondariesContainer}>
                             <p className={styles.TurnMarker}>Turn {index + 1}</p>
                             <div className={styles.SecondaryContainer}>
                                 <div style={{color: secondary[0].achieved && secondary[0].achieved === index + 1 ? 'green' : 'black'}}>{secondary[0].name}</div>
