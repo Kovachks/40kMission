@@ -44,12 +44,14 @@ const GamePrompt = props => {
             </div>
             }
             {deploymentImage &&
-            <div>
+            <div className={styles.NextImageContainer}>
                 <Image 
                     className={styles.DeploymentImage}
-                    height="500"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: '100%', height: 'auto' }}
                     src={deploymentImage}
-                    width="500"
                 />
             </div>
             }
