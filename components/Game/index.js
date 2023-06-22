@@ -7,6 +7,7 @@ const Game = props => {
         back,
         forward,
         currentStep,
+        disableRedraw,
         discardSecondary,
         endTurn,
         gameData,
@@ -22,7 +23,7 @@ const Game = props => {
         setAttacker,
         startGame
     } = props;
-    console.log(props)
+
     const steps = [
         {
             description: 'Generate Deployment',
@@ -126,10 +127,12 @@ const Game = props => {
                 ...gameData.displaySecondaries[1]
             },
             button1: {
+                disableButton: disableRedraw,
                 func: () => generateNewSecondary(0),
                 text: `Redraw ${gameData.displaySecondaries[0].name}`
             },
             button2: {
+                disableButton: disableRedraw,
                 func: () => generateNewSecondary(1),
                 text: `Redraw ${gameData.displaySecondaries[1].name}`
             },
