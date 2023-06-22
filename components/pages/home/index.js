@@ -59,6 +59,34 @@ const Home = () => {
         setStep(step + 1)
     };
 
+    const decrementCp = player => {
+        if (player === 'playerOne') {
+            setPlayerOne({
+                ...playerOne,
+                cp: playerOne.cp-1
+            })
+        } else {
+            setPlayerTwo({
+                ...playerTwo,
+                cp: playerTwo.cp-1
+            })       
+        } 
+    };
+
+    const incrementCp = player => {
+        if (player === 'playerOne') {
+            setPlayerOne({
+                ...playerOne,
+                cp: playerOne.cp+1
+            })
+        } else {
+            setPlayerTwo({
+                ...playerTwo,
+                cp: playerTwo.cp+1
+            })       
+        } 
+    }
+
     const handlePlayerCreation = playerDetails => {
         if (step === 1) {
             setPlayerOne({
@@ -136,6 +164,17 @@ const Home = () => {
             ...gameData,
             currentTurn: name
         });
+
+        setPlayerOne({
+            ...playerOne,
+            cp: playerOne.cp+1
+        });
+
+        setPlayerTwo({
+            ...playerTwo,
+            cp: playerTwo.cp+1
+        });
+
         forward(step);
     };
 
@@ -204,6 +243,7 @@ const Home = () => {
 
         const cloneGameData = structuredClone(gameData);
 
+        decrementCp(gameData.currentTurn);
         setDisableRedraw(true);
         setGameData({
             ...cloneGameData,
@@ -252,7 +292,9 @@ const Home = () => {
             cloneGameData.secondaries[playerIndex].turnSecondaries[turn][index].discard = true;
             setGameData({
                 ...cloneGameData,
-            });    
+            });  
+            
+            decrementCp(gameData.currentTurn);
         }   
     };
 
