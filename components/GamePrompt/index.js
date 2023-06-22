@@ -1,6 +1,6 @@
+import Image from 'next/image';
 import Button from '../Button';
 import styles from './GamePrompt.module.css';
-
 
 const GamePrompt = props => {
     const {
@@ -44,7 +44,7 @@ const GamePrompt = props => {
             </div>
             }
             {deploymentImage &&
-            <img className={styles.DeploymentImage} src={deploymentImage} />
+            <Image className={styles.DeploymentImage} src={deploymentImage} />
             }
             {button1 && !disableButton &&
             <Button
