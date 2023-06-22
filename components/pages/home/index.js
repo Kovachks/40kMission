@@ -59,6 +59,34 @@ const Home = () => {
         setStep(step + 1)
     };
 
+    const decrementCp = player => {
+        if (player === 'playerOne') {
+            setPlayerOne({
+                ...playerOne,
+                cp: playerOne.cp-1
+            })
+        } else {
+            setPlayerTwo({
+                ...playerTwo,
+                cp: playerTwo.cp-1
+            })       
+        } 
+    };
+
+    const incrementCp = player => {
+        if (player === 'playerOne') {
+            setPlayerOne({
+                ...playerOne,
+                cp: playerOne.cp+1
+            })
+        } else {
+            setPlayerTwo({
+                ...playerTwo,
+                cp: playerTwo.cp+1
+            })       
+        } 
+    }
+
     const handlePlayerCreation = playerDetails => {
         if (step === 1) {
             setPlayerOne({
@@ -115,7 +143,7 @@ const Home = () => {
         const randomIndex = Math.floor(Math.random() * length);
 
         const special = cloneSpecials.splice(randomIndex, 1)[0];
-        console.log(special)
+
         setGameData({
             ...gameData,
             special: {
@@ -136,17 +164,28 @@ const Home = () => {
             ...gameData,
             currentTurn: name
         });
+
+        setPlayerOne({
+            ...playerOne,
+            cp: playerOne.cp+1
+        });
+
+        setPlayerTwo({
+            ...playerTwo,
+            cp: playerTwo.cp+1
+        });
+
         forward(step);
     };
 
     const generateSecondaries = player => {
-        console.log(player)
+
         const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
         const cloneGameData = structuredClone(gameData);
-        console.log(cloneGameData)
+
         if (!cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
             const cloneSecondaries = structuredClone(cloneGameData.secondaries[player].secondaries);
-            console.log(cloneSecondaries)
+
             const length1 = cloneSecondaries.length;
             const randomIndex1 = Math.floor(Math.random() * length1);
             const firstSecondary = cloneSecondaries.splice(randomIndex1, 1)[0];
@@ -160,9 +199,9 @@ const Home = () => {
                 firstSecondary,
                 secondSecondary
             ];
-            console.log(displaySecondaries);
+
             cloneGameData.secondaries[playerIndex].secondaries = cloneSecondaries;
-            console.log(cloneGameData)
+
             setGameData({
                 ...cloneGameData,
                 displaySecondaries: [...displaySecondaries]
@@ -171,9 +210,8 @@ const Home = () => {
         } else {
             const turnSecondariesLastIndex = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
             const lastTurn = cloneGameData.secondaries[playerIndex].turnSecondaries[turnSecondariesLastIndex];
-            console.log(lastTurn);
             const displaySecondaries = lastTurn.filter(item => item.achieved === 0 && item.discard === 0);
-            console.log(displaySecondaries)
+            
             for (let i = 0; i <= 2; i++) {
                 const cloneSecondaries = structuredClone(cloneGameData.secondaries[player].secondaries);
                 const length = cloneSecondaries.length;
@@ -205,27 +243,27 @@ const Home = () => {
 
         const cloneGameData = structuredClone(gameData);
 
+        decrementCp(gameData.currentTurn);
+        setDisableRedraw(true);
         setGameData({
             ...cloneGameData,
             displaySecondaries: [...cloneDisplaySecondaries]
         });
-        setDisableRedraw(true);
+        
+
     };
 
     const keepSecondaries = () => {
         setDisableRedraw(false);
         const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
-        console.log(playerIndex);
         const cloneGameData = structuredClone(gameData);
 
         const cloneTurnSecondaries = structuredClone(cloneGameData.secondaries[playerIndex].turnSecondaries);
-        console.log(cloneTurnSecondaries);
-        console.log(gameData);
+
         cloneTurnSecondaries.push(gameData.displaySecondaries);
 
         cloneGameData.secondaries[playerIndex].turnSecondaries = cloneTurnSecondaries;
 
-        console.log(cloneGameData);
         setGameData({
             ...cloneGameData
         });
@@ -237,10 +275,9 @@ const Home = () => {
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
             const turn = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
-            console.log(turn)
+
             cloneGameData.secondaries[playerIndex].turnSecondaries[turn][index].achieved = cloneGameData.secondaries[playerIndex].turnSecondaries.length;
-            console.log(cloneGameData)
-            
+
             setGameData({
                 ...cloneGameData,
             });    
@@ -255,19 +292,30 @@ const Home = () => {
             cloneGameData.secondaries[playerIndex].turnSecondaries[turn][index].discard = true;
             setGameData({
                 ...cloneGameData,
-            });    
+            });  
+            
+            decrementCp(gameData.currentTurn);
         }   
     };
 
     const endTurn = () => {
-        console.log(gameData)
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.currentTurn === 'playerOne') {
             cloneGameData.currentTurn = 'playerTwo';
         } else {
             cloneGameData.currentTurn = 'playerOne';
         };
-        console.log(cloneGameData);
+
+        setPlayerOne({
+            ...playerOne,
+            cp: playerOne.cp+1
+        });
+
+        setPlayerTwo({
+            ...playerTwo,
+            cp: playerTwo.cp+1
+        });
+
         setGameData({
             ...cloneGameData,
             displaySecondaries: [{}, {}]
