@@ -44,7 +44,14 @@ const GamePrompt = props => {
             </div>
             }
             {deploymentImage &&
-            <Image className={styles.DeploymentImage} src={deploymentImage} />
+            <div>
+                <Image 
+                    className={styles.DeploymentImage}
+                    height="500"
+                    src={deploymentImage}
+                    width="500"
+                />
+            </div>
             }
             {button1 && !disableButton &&
             <Button
