@@ -19,7 +19,6 @@ const Game = props => {
         keepSecondaries,
         playerOne,
         playerTwo,
-        redrawSecondary,
         setAttacker,
         startGame
     } = props;
@@ -158,11 +157,11 @@ const Game = props => {
                 text: `Acheived ${gameData.displaySecondaries[1].name}`
             },
             button3: {
-                func: () => redrawSecondary(0),
+                func: () => discardSecondary(0),
                 text: `Discard ${gameData.displaySecondaries[0].name}`,
             },
             button4: {
-                func: () => redrawSecondary(1),
+                func: () => discardSecondary(1),
                 text: `Discard ${gameData.displaySecondaries[1].name}`,
             },
             button5: {

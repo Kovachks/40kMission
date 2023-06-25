@@ -281,7 +281,7 @@ const Home = () => {
         }
     };
 
-    const redrawSecondary = index => {
+    const discardSecondary = (index) => {
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
             const turn = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
@@ -290,11 +290,8 @@ const Home = () => {
                 ...cloneGameData,
             });  
             
-            decrementCp(gameData.currentTurn);
+            incrementCp(gameData.currentTurn);
         }
-    };
-
-    const discardSecondary = (index) => {
         
     };
 
@@ -345,7 +342,6 @@ const Home = () => {
                     currentStep={step}
                     disableRedraw={disableRedraw}
                     discardSecondary={discardSecondary}
-                    redrawSecondary={redrawSecondary}
                     endTurn={endTurn}
                     forward={forward}
                     gameData={gameData}
