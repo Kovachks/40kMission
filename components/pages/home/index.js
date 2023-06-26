@@ -51,6 +51,8 @@ const Home = () => {
         turn: 1
     });
 
+    const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
+
     const back = step => {
         setStep(step - 1)
     };
@@ -179,8 +181,6 @@ const Home = () => {
     };
 
     const generateSecondaries = player => {
-
-        const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
         const cloneGameData = structuredClone(gameData);
 
         if (!cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
@@ -230,7 +230,6 @@ const Home = () => {
     };
 
     const generateNewSecondary = index => {
-        const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
         const cloneSecondaries = structuredClone(gameData.secondaries[playerIndex].secondaries);
         const cloneDisplaySecondaries = structuredClone(gameData.displaySecondaries);
 
@@ -255,7 +254,6 @@ const Home = () => {
 
     const keepSecondaries = () => {
         setDisableRedraw(false);
-        const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
         const cloneGameData = structuredClone(gameData);
 
         const cloneTurnSecondaries = structuredClone(cloneGameData.secondaries[playerIndex].turnSecondaries);
@@ -271,7 +269,6 @@ const Home = () => {
     };
 
     const achieveSecondary = index => {
-        const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
             const turn = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
@@ -285,7 +282,6 @@ const Home = () => {
     };
 
     const discardSecondary = (index) => {
-        const playerIndex = gameData.currentTurn === 'playerOne' ? 0 : 1;
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
             const turn = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
@@ -294,8 +290,9 @@ const Home = () => {
                 ...cloneGameData,
             });  
             
-            decrementCp(gameData.currentTurn);
-        }   
+            incrementCp(gameData.currentTurn);
+        }
+        
     };
 
     const endTurn = () => {

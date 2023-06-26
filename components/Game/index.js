@@ -19,7 +19,6 @@ const Game = props => {
         keepSecondaries,
         playerOne,
         playerTwo,
-        secondaries,
         setAttacker,
         startGame
     } = props;
