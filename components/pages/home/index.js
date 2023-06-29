@@ -9,6 +9,7 @@ const Home = () => {
     const [step, setStep] = useState(1);
     const [attacker, setAttacker] = useState('');
     const [disableRedraw, setDisableRedraw] = useState(false);
+    const [disableDiscard, setDisableDiscard] = useState(false);
     const [gamePrimaries, setGamePrimaries] = useState(primaryMissions);
     const [gameDeployments, setGameDeployments] = useState(deployments);
     const [gameSpecials, setGameSpecials] = useState(specials);
@@ -272,24 +273,33 @@ const Home = () => {
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
             const turn = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
+            const newDisplaySecondaries = structuredClone(gameData.displaySecondaries)
 
+            newDisplaySecondaries[index].achieved = true;
             cloneGameData.secondaries[playerIndex].turnSecondaries[turn][index].achieved = cloneGameData.secondaries[playerIndex].turnSecondaries.length;
 
             setGameData({
                 ...cloneGameData,
+                displaySecondaries: newDisplaySecondaries
             });    
         }
     };
 
     const discardSecondary = (index) => {
+        console.log(index);
         const cloneGameData = structuredClone(gameData);
         if (cloneGameData.secondaries[playerIndex].turnSecondaries.length) {
+            console.log(gameData)
             const turn = cloneGameData.secondaries[playerIndex].turnSecondaries.length - 1;
             cloneGameData.secondaries[playerIndex].turnSecondaries[turn][index].discard = true;
+            const newDisplaySecondaries = cloneGameData.displaySecondaries.splice(index, 1)
+            console.log(newDisplaySecondaries);
+            console.log(cloneGameData)
             setGameData({
                 ...cloneGameData,
-            });  
-            
+                displaySecondaries: newDisplaySecondaries
+            });
+            setDisableDiscard(true);
             incrementCp(gameData.currentTurn);
         }
         
@@ -316,8 +326,37 @@ const Home = () => {
         setGameData({
             ...cloneGameData,
             displaySecondaries: [{}, {}]
-        })
+        });
+        setDisableDiscard(false);
         back(12);
+    };
+
+    const useCp = () => {
+        if (playerIndex) {
+            setPlayerTwo({
+                ...playerTwo,
+                cp: playerTwo.cp - 1
+            });
+        } else {
+            setPlayerOne({
+                ...playerOne,
+                cp: playerOne.cp - 1
+            });
+        }
+    };
+
+    const generateCp = () => {
+        if (playerIndex) {
+            setPlayerTwo({
+                ...playerTwo,
+                cp: playerTwo.cp + 1
+            })
+        } else {
+            setPlayerOne({
+                ...playerOne,
+                cp: playerOne.cp + 1
+            });
+        }
     };
 
 
@@ -340,11 +379,13 @@ const Home = () => {
                     achieveSecondary={achieveSecondary}
                     back={back}
                     currentStep={step}
+                    disableDiscard={disableDiscard}
                     disableRedraw={disableRedraw}
                     discardSecondary={discardSecondary}
                     endTurn={endTurn}
                     forward={forward}
                     gameData={gameData}
+                    generateCp={generateCp}
                     generateDeployment={generateDeployment}
                     generatePrimary={generatePrimary}
                     generateNewSecondary={generateNewSecondary}
@@ -355,6 +396,7 @@ const Home = () => {
                     playerTwo={playerTwo}
                     setAttacker={handleAttacker}   
                     startGame={startGame}
+                    useCp={useCp}
                 />
             }
         </div>

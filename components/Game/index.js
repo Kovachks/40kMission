@@ -7,6 +7,7 @@ const Game = props => {
         back,
         forward,
         currentStep,
+        disableDiscard,
         disableRedraw,
         discardSecondary,
         endTurn,
@@ -128,12 +129,12 @@ const Game = props => {
             button1: {
                 disableButton: disableRedraw,
                 func: () => generateNewSecondary(0),
-                text: `Redraw ${gameData.displaySecondaries[0].name}`
+                text: `${gameData.displaySecondaries[0].name ? `Discard ${gameData.displaySecondaries[0].name}` : ''}`
             },
             button2: {
                 disableButton: disableRedraw,
                 func: () => generateNewSecondary(1),
-                text: `Redraw ${gameData.displaySecondaries[1].name}`
+                text: `${gameData.displaySecondaries[1] ? `Discard ${gameData.displaySecondaries[1].name}` : ''}`
             },
             button3: {
                 func: () => keepSecondaries(),
@@ -149,20 +150,24 @@ const Game = props => {
                 ...gameData.displaySecondaries[1]
             },
             button1: {
+                disableButton: gameData.displaySecondaries[0].achieved,
                 func: () => achieveSecondary(0),
-                text: `Acheived ${gameData.displaySecondaries[0].name}`
+                text: `${gameData.displaySecondaries[0] ? `Achieved ${gameData.displaySecondaries[0].name}` : ''}`
             },
             button2: {
+                disableButton: gameData.displaySecondaries[1].achieved,
                 func: () => achieveSecondary(1),
-                text: `Acheived ${gameData.displaySecondaries[1].name}`
+                text: `${gameData.displaySecondaries[1] ? `Achieved ${gameData.displaySecondaries[1].name}` : ''}`
             },
             button3: {
+                disableButton: disableDiscard || gameData.displaySecondaries[0].achieved,
                 func: () => discardSecondary(0),
-                text: `Discard ${gameData.displaySecondaries[0].name}`,
+                text: `${gameData.displaySecondaries[0] ? `Discard ${gameData.displaySecondaries[0].name}` : ''}`
             },
             button4: {
+                disableButton: disableDiscard || gameData.displaySecondaries[1].achieved,
                 func: () => discardSecondary(1),
-                text: `Discard ${gameData.displaySecondaries[1].name}`,
+                text: `${gameData.displaySecondaries[1] ? `Discard ${gameData.displaySecondaries[1].name}` : ''}`
             },
             button5: {
                 func: () => endTurn(),
