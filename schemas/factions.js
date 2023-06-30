@@ -1,0 +1,31 @@
+const factions = [
+    "Adeptus Custodes",
+    "Adeptus Mechanicus",
+    "Adepta Sororitas",
+    "Aeldari",
+    "Agents Of The Imperium",
+    "Astra Militarum",
+    "Blood Angels",
+    "Black Templars",
+    "Chaos Demons",
+    "Chaos Knights",
+    "Chaos Space Marines",
+    "Dark Angels",
+    "Death Guard",
+    "Death Watch",
+    "Drukhari",
+    "Genestealer Cults",
+    "Grey Knights",
+    "Imperial Knights",
+    "Leagues Of Votann",
+    "Necrons",
+    "Orks",
+    "Space Marines",
+    "Space Wolves",
+    "Tau",
+    "Thousand Sounds",
+    "Tyranids",
+    "World Eaters"
+];
+
+export default factions;

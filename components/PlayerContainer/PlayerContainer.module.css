@@ -16,3 +16,8 @@
 .PlayerInputContainer label {
     display: block;
 }
+
+.FactionSelect {
+    border: 1px solid black;
+    width: 100%;
+}
