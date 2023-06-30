@@ -33,11 +33,12 @@ const PlayerContainer = props => {
             <div className={styles.PlayerInputContainer}>
                 <label>Faction: </label>
                 <select className={styles.FactionSelect} name="faction" onChange={e => handeDetailChange(e)} style={{width: '100%'}}>
-                    <option disabled="true">Select A Faction</option>
+                    <option disabled selected>Select A Faction</option>
                     {factions.map((faction, index) => <option key={index} data-id={faction}>{faction}</option>)}
                 </select>
             </div>
             <Button 
+                disabled={!playerDetails.faction || !playerDetails.name}
                 handleSubmit={() => handleSubmit(playerDetails)}
                 text='Continue'
             />
