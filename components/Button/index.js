@@ -2,12 +2,13 @@ import styles from './Button.module.css';
 
 const Button = props => {
     const {
+        disabled,
         handleSubmit,
         text
     } = props;
 
     return (
-        <button className={styles.Button} onClick={() => handleSubmit()} >{text}</button>
+        <button disabled={disabled} className={`${styles.Button} ${disabled ? styles.Disabled : ''}`} onClick={() => handleSubmit()} >{text}</button>
     )
 };
 
