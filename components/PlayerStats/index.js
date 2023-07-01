@@ -36,7 +36,7 @@ const PlayerStats = (props) => {
         {attacker && (
           <p
             className={
-              isAttacker ? 'decoration-red-500' : 'decoration-green-500'
+              isAttacker ? 'text-red-500' : 'text-green-500'
             }
           >
             {isAttacker ? 'Attacker' : 'Defender'}
@@ -54,7 +54,7 @@ const PlayerStats = (props) => {
             secondaries.map((secondary, index) => {
               return (
                 <div key={index} className={secondarisBorder}>
-                  <p className="underline">Turn {index + 1}</p>
+                  <p className="underline text-black">Turn {index + 1}</p>
                   <div className={secondarisBorder}>
                     <div
                       style={{

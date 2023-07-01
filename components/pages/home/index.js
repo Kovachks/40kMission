@@ -386,7 +386,7 @@ const Home = () => {
       container
       rowSpacing={1}
       spacing={2}
-      className="bg-[#102D3F] min-h-screen p-10"
+      className="bg-[#C5D2DB] min-h-screen p-10"
     >
       {isMobile ? (
         <>
@@ -451,7 +451,7 @@ const Home = () => {
             />
           </Grid>
 
-          <Grid item md={3}>
+          <Grid item md={6}>
             {step === 1 && (
               <PlayerContainer handleSubmit={handlePlayerCreation} />
             )}
@@ -468,6 +468,7 @@ const Home = () => {
                 endTurn={endTurn}
                 forward={forward}
                 gameData={gameData}
+                generateCp={generateCp}
                 generateDeployment={generateDeployment}
                 generatePrimary={generatePrimary}
                 generateNewSecondary={generateNewSecondary}
@@ -478,6 +479,7 @@ const Home = () => {
                 playerTwo={playerTwo}
                 setAttacker={handleAttacker}
                 startGame={startGame}
+                useCp={useCp}
               />
             )}
           </Grid>
