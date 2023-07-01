@@ -25,3 +25,16 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@layer components {
+  .primary-box {
+    background: #5c7c8e;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 2px 3px rgb(0 0 0 / 30%);
+    position: relative;
+    animation: card-animation 0.2s 1;
+    border: solid 2px black;
+    border-radius: 20px;
+  }
+}
